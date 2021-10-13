@@ -1,10 +1,106 @@
+import 'package:empathy_exhibition/ModesInfoPage.dart';
 import 'package:flutter/material.dart';
 import 'Themes.dart';
 import 'ModePage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animations/animations.dart';
 
 void main() {
   runApp(MyApp());
+}
+
+Widget buildAppBar(BuildContext context, String title, Widget page) {
+  return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrangeAccent,
+        onPressed: () => Navigator.of(context).pushReplacement(
+            SharedAxisPageRoute(
+                page: MyHomePage(title: 'Empathy Exhibition'),
+                transitionType: SharedAxisTransitionType.scaled)),
+        shape: StadiumBorder(),
+        child: Icon(Icons.home_rounded),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    Color(0xFF9575CD),
+                    Color(0xFF311192),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          BottomAppBar(
+            elevation: 0,
+            shape: CircularNotchedRectangle(),
+            color: Colors.transparent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.white),
+                    padding: const EdgeInsets.all(7.0),
+                    primary: Colors.white,
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Themes',
+                    style: GoogleFonts.merriweatherSans(),
+                  ),
+                ),
+                // OutlinedButton(
+                //   style: OutlinedButton.styleFrom(
+                //     side: BorderSide(color: Colors.transparent),
+                //     padding: const EdgeInsets.all(10.0),
+                //     primary: Colors.white,
+                //     textStyle: const TextStyle(fontSize: 20),
+                //   ),
+                //   onPressed: () => Navigator.of(context)
+                //       .pushReplacement(SharedAxisPageRoute(
+                //          page: MyHomePage(title: widget.title),
+                //   transitionType: SharedAxisTransitionType.scaled)),
+                //   child: Text('Home', style: GoogleFonts.merriweatherSans(),),
+                // ),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.white),
+                    padding: const EdgeInsets.all(7.0),
+                    primary: Colors.white,
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () => Navigator.of(context).push(SharedAxisPageRoute(page: ModesInfoPage(), transitionType: SharedAxisTransitionType.vertical)),
+                  child: Text('Modes', style: GoogleFonts.merriweatherSans()),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Text(
+              title,
+              style: GoogleFonts.lobster(fontSize: 32),
+            ),
+          ),
+        ),
+        centerTitle: true,
+        shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+      body: page);
 }
 
 class MyApp extends StatelessWidget {
@@ -28,6 +124,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Empathy Exhibition'),
     );
   }
+
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -57,117 +155,123 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(
-          widget.title,
-          textAlign: TextAlign.center,
-        ),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Invoke "debug painting" (press "p" in the console, choose the
-            // "Toggle Debug Paint" action from the Flutter Inspector in Android
-            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-            // to see the wireframe for each widget.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Spacer(),
-              Column(children: [
-                Row(
-                  children: [],
+    return buildAppBar(context, 'Empathy Exhibition', Column(
+        // Column is also a layout widget. It takes a list of children and
+        // arranges them vertically. By default, it sizes itself to fit its
+        // children horizontally, and tries to be as tall as its parent.
+        //
+        // Invoke "debug painting" (press "p" in the console, choose the
+        // "Toggle Debug Paint" action from the Flutter Inspector in Android
+        // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+        // to see the wireframe for each widget.
+        //
+        // Column has various properties to control how it sizes itself and
+        // how it positions its children. Here we use mainAxisAlignment to
+        // center the children vertically; the main axis here is the vertical
+        // axis because Columns are vertical (the cross axis would be
+        // horizontal).
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Text(
+              'Select a theme to start exploring',
+              style: GoogleFonts.merriweatherSans(fontSize: 18),
+            ),
+          ),
+          Container(
+            height: 400,
+            child: Stack(
+              children: [
+                Positioned(
+                  bottom: 160,
+                  right: 25,
+                  child: OutlinedButton(
+                    child: Text('     EMPATHY',
+                        style: GoogleFonts.merriweather(
+                            fontWeight: FontWeight.bold)),
+                    style: OutlinedButton.styleFrom(
+                        shape: CircleBorder(),
+                        side: BorderSide(color: Colors.deepPurple, width: 5),
+                        fixedSize: Size.fromRadius(110)),
+                    onPressed: () => Navigator.of(context).push(
+                        SharedAxisPageRoute(
+                            page: ModePage(theme: Themes.empathy),
+                            transitionType:
+                                SharedAxisTransitionType.horizontal)),
+                  ),
                 ),
-                OutlinedButton(
-                  child: Text('INTERSECTIONALITY',
-                      style: GoogleFonts.merriweatherSans()),
-                  style: OutlinedButton.styleFrom(
-                      shape: CircleBorder(),
-                      side: BorderSide(color: Colors.deepPurple),
-                      fixedSize: Size.fromRadius(100)),
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          ModePage(theme: Themes.INTERSECTIONALITY))),
+                Positioned(
+                  bottom: 160,
+                  left: 25,
+                  child: OutlinedButton(
+                    child: Text('INTERSECTIONALITY',
+                        style: GoogleFonts.merriweather(
+                            fontWeight: FontWeight.bold)),
+                    style: OutlinedButton.styleFrom(
+                        shape: CircleBorder(),
+                        side: BorderSide(color: Colors.deepPurple, width: 5),
+                        fixedSize: Size.fromRadius(110)),
+                    onPressed: () => Navigator.of(context).push(
+                        SharedAxisPageRoute(
+                            page: ModePage(theme: Themes.intersectionality),
+                            transitionType:
+                                SharedAxisTransitionType.horizontal)),
+                  ),
+                ),
+                Positioned(
+                  top: 160,
+                  left: 100,
+                  child: OutlinedButton(
+                    child: Text('RESPECT',
+                        style: GoogleFonts.merriweather(
+                            fontWeight: FontWeight.bold)),
+                    style: OutlinedButton.styleFrom(
+                        shape: CircleBorder(),
+                        side: BorderSide(color: Colors.deepPurple, width: 5),
+                        fixedSize: Size.fromRadius(110)),
+                    onPressed: () => Navigator.of(context).push(
+                        SharedAxisPageRoute(
+                            page: ModePage(theme: Themes.respect),
+                            transitionType:
+                                SharedAxisTransitionType.horizontal)),
+                  ),
                 )
-              ]),
-              Spacer(),
-              Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: <Color>[
-                            Color(0xFF0D67A1),
-                            Color(0xFF1996D2),
-                            Color(0xFF42C5F5),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {},
-                          child: const Text('Themes'),
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () => Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      MyHomePage(title: widget.title))),
-                          child: const Text('Home'),
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {},
-                          child: const Text('Modes'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ]),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+              ],
+            ),
+          ),
+          Spacer(),
+        ])); // This trailing comma makes auto-formatting nicer for build methods.
   }
+}
+
+/// allows for easier syntax when using SharedAxisTransition
+class SharedAxisPageRoute extends PageRouteBuilder {
+  SharedAxisPageRoute(
+      {required Widget page,
+      required SharedAxisTransitionType transitionType,
+      Duration duration = const Duration(milliseconds: 500)})
+      : super(
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> primaryAnimation,
+            Animation<double> secondaryAnimation,
+          ) =>
+              page,
+          transitionDuration: duration,
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> primaryAnimation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
+            return SharedAxisTransition(
+              animation: primaryAnimation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: transitionType,
+              child: child,
+            );
+          },
+        );
 }
