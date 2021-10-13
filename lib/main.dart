@@ -1,5 +1,6 @@
 import 'package:empathy_exhibition/ModesInfoPage.dart';
 import 'package:flutter/material.dart';
+import 'ThemePage.dart';
 import 'Themes.dart';
 import 'ModePage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,7 +50,7 @@ Widget buildAppBar(BuildContext context, String title, Widget page) {
                     primary: Colors.white,
                     textStyle: const TextStyle(fontSize: 20),
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push(SharedAxisPageRoute(page: ThemePage(), transitionType: SharedAxisTransitionType.vertical)),
                   child: Text(
                     'Themes',
                     style: GoogleFonts.merriweatherSans(),
@@ -224,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   top: 160,
                   left: 100,
                   child: OutlinedButton(
-                    child: Text('RESPECT',
+                    child: Text('RESILIENCE',
                         style: GoogleFonts.merriweather(
                             fontWeight: FontWeight.bold)),
                     style: OutlinedButton.styleFrom(

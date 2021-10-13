@@ -12,7 +12,7 @@ extension ThemesExtension on Themes {
       case Themes.intersectionality:
         return 'Intersectionality';
       case Themes.respect:
-        return 'Respect';
+        return 'Resilience';
     }
   }
 }

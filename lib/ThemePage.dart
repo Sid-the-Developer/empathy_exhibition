@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Modes.dart';
 
 class ThemePage extends StatefulWidget {
-  ThemePage({Key? key, required this.mode}) : super(key: key);
-
-  // Selected theme
-  final Modes mode;
+  ThemePage({Key? key}) : super(key: key);
 
   @override
   _ThemePageState createState() => _ThemePageState();
@@ -23,93 +19,124 @@ class _ThemePageState extends State<ThemePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return buildAppBar(context, 'The Themes',
-        ListView(
-          children: [
-            Card(
-              margin: EdgeInsets.all(10),
-              elevation: .5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              color: Colors.white,
-              child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      Expanded(
-                          flex: 7,
-                          child: Text(
-                            'Written',
+        Column(
+          mainAxisSize: MainAxisSize.min,
+    children: [Expanded(
+          child: ListView(
+            primary: true,
+            physics: BouncingScrollPhysics(),
+            children: [
+              Card(
+                margin: EdgeInsets.all(10),
+                elevation: .5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.white,
+                child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: RichText(
+                        text: TextSpan(
+                            text: 'Empathy\n',
                             style: GoogleFonts.merriweather(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25,
                                 color: Colors.deepOrangeAccent),
-                          )),
-                      RichText(
-                          text: TextSpan(
-                              text:
-                              "The written mode includes anything written. Its affordances include...",
-                              style: GoogleFonts.merriweatherSans(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 18,
+                            children: [
+                              TextSpan(
+                                text:
+                                'The ability to understand someone and "step into their shoes."\n',
+                                style: GoogleFonts.lato(
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 18,
+                                    color: Colors.grey
+                                ),
                               ),
-                              children: [
-                                TextSpan(
-                                    text: '• Up for interpretation\n'
-                                        '• Allows for manipulation in structure (poems vs. short story vs. book)\n',
-                                    style: GoogleFonts.merriweatherSans(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic))
-                              ]))
-                    ],
-                  )),
-            ),
-            Card(
-              margin: EdgeInsets.all(10),
-              elevation: .5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                              TextSpan(
+                                  text: 'Empathy is crucial to human connection. By communicating, no matter which mode, '
+                                      'we can empathize with people. With a sense of unity and inclusion, communities thrive.',
+                                  style: GoogleFonts.lato(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black))
+                            ]))),
               ),
-              color: Colors.white,
-
-              /// opens detailed view on tap
-              child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      /// current location and city name header
-                      Expanded(
-                          flex: 7,
-                          child: Text(
-                            'Written',
+              Card(
+                margin: EdgeInsets.all(10),
+                elevation: .5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.white,
+                child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: RichText(
+                        text: TextSpan(
+                            text: 'Intersectionality\n',
                             style: GoogleFonts.merriweather(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25,
                                 color: Colors.deepOrangeAccent),
-                          )),
-                      RichText(
-                          text: TextSpan(
-                              text:
-                              "The written mode includes anything written. Its affordances include...",
-                              style: GoogleFonts.merriweatherSans(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 18,
+                            children: [
+                              TextSpan(
+                                text:
+                                "The interconnectedness of multiple identities forming a unique perspective and life experience.\n",
+                                style: GoogleFonts.lato(
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 18,
+                                    color: Colors.grey
+                                ),
                               ),
-                              children: [
-                                TextSpan(
-                                    text: '• Up for interpretation\n'
-                                        '• Allows for manipulation in structure (poems vs. short story vs. book)\n',
-                                    style: GoogleFonts.merriweatherSans(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic))
-                              ]))
-                    ],
-                  )),
-            ),
-          ],
-        )
+                              TextSpan(
+                                  text: 'Understanding intersectionality is a step toward empathy. The social labels/identities '
+                                      'each person carries effect the way they see life. By interacting with artifacts about unique people, '
+                                      'we can educate ourselves in order to be sensitive to experiences with which we are unfamiliar.',
+                                  style: GoogleFonts.lato(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black))
+                            ]))),
+              ),
+              Card(
+                margin: EdgeInsets.all(10),
+                elevation: .5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.white,
+                child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: RichText(
+                        text: TextSpan(
+                            text: 'Resilience\n',
+                            style: GoogleFonts.merriweather(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Colors.deepOrangeAccent),
+                            children: [
+                              TextSpan(
+                                text:
+                                "The ability to get up as strong if not stronger after facing adversities.\n",
+                                style: GoogleFonts.lato(
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 18,
+                                    color: Colors.grey
+                                ),
+                              ),
+                              TextSpan(
+                                  text: 'Resilience is a quality often found in underrepresented groups. '
+                                      'However it comes in a wide range of forms. As a theme, resilience is empowering. '
+                                      'By interacting with artifacts about resilience, we can learn to recognize and celebrate '
+                                      'resilience in all communities.',
+                                  style: GoogleFonts.lato(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black))
+                            ]))),
+              ),
+            ],
+          ),
+        )])
     );
   }
 }
