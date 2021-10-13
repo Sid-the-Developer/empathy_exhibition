@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'Themes.dart';
+import 'ModePage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          textAlign: TextAlign.center,
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -81,11 +87,22 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Spacer(),
-              Center(
-                child: Text(
-                  'You have pushed the button this many times:',
+              Column(children: [
+                Row(
+                  children: [],
                 ),
-              ),
+                OutlinedButton(
+                  child: Text('INTERSECTIONALITY',
+                      style: GoogleFonts.merriweatherSans()),
+                  style: OutlinedButton.styleFrom(
+                      shape: CircleBorder(),
+                      side: BorderSide(color: Colors.deepPurple),
+                      fixedSize: Size.fromRadius(100)),
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ModePage(theme: Themes.INTERSECTIONALITY))),
+                )
+              ]),
               Spacer(),
               Stack(
                 children: <Widget>[
@@ -104,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   ButtonBar(
-                    alignment: MainAxisAlignment.center,
+                    alignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(4),
@@ -126,10 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             primary: Colors.white,
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          onPressed: () => Navigator.of(context).pushReplacement(
-    MaterialPageRoute(
-    builder: (BuildContext context) =>
-    MyHomePage(title: widget.title))),
+                          onPressed: () => Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      MyHomePage(title: widget.title))),
                           child: const Text('Home'),
                         ),
                       ),
